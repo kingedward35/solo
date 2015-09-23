@@ -6,7 +6,7 @@ var partials = require('express-partials');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var $ = require('jQuery');
+
 
 
 
@@ -21,30 +21,48 @@ app.use(function(req, res, next) {
   next();
 });
 
+// app.use(cookieParser());
+// app.use(session({
+//   store: new MongoStore({
+//     url: 'mongod://root:myPassword@mongo.onmodulus.net:27017/3xam913',
+//   }),
+//   secret: 'Today if you hear his voice, do not harden your heart'
+// }));
+
 app.use(express.static(__dirname + '/view'));
 app.use(express.static(__dirname + '/script'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 
 app.get('/', function(req, res) {
+  // if (req.session.lastPage) {
+  //   res.write('Last page was: ' + req.session.lastPage + '. ');
+  // }
   res.redirect('signup.html');
 });
 
 app.get('/signup', function(req, res) {
+  // if (req.session.lastPage) {
+  //   res.write('Last page was: ' + req.session.lastPage + '. ');
+  // }
   res.redirect('signup.html');
 });
 
 app.get('/pictures', function(req, res) {
-  res.redirect('pictures.html');
+  // if (req.session.lastPage) {
+  //   res.write('Last page was: ' + req.session.lastPage + '. ');
+  // }
+  // req.session.lastPage = '/pictures';
+  res.send('pictures.html');
 });
 
 app.post('/signup', function(req, res) {
   res.send(req.body.photo);
   
   bcrypt.hash(req.body.password, 8, function(err, hash) {
-    
+
   storeUser = {
     username: req.body.username,
     password: {
