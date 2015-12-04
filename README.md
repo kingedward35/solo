@@ -1,2 +1,2 @@
 #solo
-This is a project I completed as a student at [Hack Reactor Remote Beta](http://www.hackreactor.com/remote-beta). This project was worked on with a pair.
+An application that allows users to upload their pictures presenting a thumbnail view and displaying full size pictures when clicked.
